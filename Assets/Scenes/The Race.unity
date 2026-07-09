@@ -5564,6 +5564,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9041432283490599144, guid: 834b316c2b5f2e146ae22f9c7e385366, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1898650466}
+    - targetCorrespondingSourceObject: {fileID: 9041432283490599144, guid: 834b316c2b5f2e146ae22f9c7e385366, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1898650467}
   m_SourcePrefab: {fileID: 100100000, guid: 834b316c2b5f2e146ae22f9c7e385366, type: 3}
 --- !u!1 &1898650460 stripped
 GameObject:
@@ -5582,9 +5585,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f866f1e588a27443918f4065aa247a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 25
-  reverseSpeed: 5
-  turnSpeed: 196
+  moveSpeed: 87
+  reverseSpeed: 15
+  turnSpeed: 200
   brakeDrag: 8
   driftSpeed: 107
   pauseMenu: {fileID: 0}
@@ -5659,6 +5662,21 @@ WheelCollider:
   m_LayerOverridePriority: 0
   m_Enabled: 1
   m_ProvidesContacts: 0
+--- !u!114 &1898650467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898650460}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e580ebb2600aa4b8ce53396fb3ec40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forward_speed: 1.1
+  backward_speed: 1.05
+  steeringSpeed: 120
 --- !u!850595691 &1949631259
 LightingSettings:
   m_ObjectHideFlags: 0
