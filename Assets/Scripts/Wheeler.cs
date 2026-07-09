@@ -6,8 +6,9 @@ public class Wheeler : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public float reverseSpeed = 5f;
-    public float turnSpeed = 100f;
+    public float turnSpeed = 175; 
     public float brakeDrag = 5f;
+    public float driftSpeed = 85;
 
     public GameObject pauseMenu;
     private bool isPaused = false;
@@ -22,12 +23,18 @@ public class Wheeler : MonoBehaviour
     private InputAction joystickBrake;
     private InputAction keyboardBrake;
     private InputAction steeringAction;
+    private InputAction driftingAction;
+    private InputAction driftThrottle;
 
     private void OnEnable()
     {
 
         joystickThrottle = new InputAction(type: InputActionType.Value, binding: "<Joystick>/z");
         keyboardThrottle = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/w");
+
+      
+
+
 
         joystickBrake = new InputAction(type: InputActionType.Value, binding: "<Joystick>/rz");
         keyboardBrake = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/s");
@@ -43,6 +50,7 @@ public class Wheeler : MonoBehaviour
         joystickBrake.Enable();
         keyboardBrake.Enable();
         steeringAction.Enable();
+       
 
     }
 
@@ -53,6 +61,7 @@ public class Wheeler : MonoBehaviour
         joystickBrake.Disable();
         keyboardBrake.Disable();
         steeringAction.Disable();
+        
 
     }
 
@@ -61,6 +70,7 @@ public class Wheeler : MonoBehaviour
         // Joystick pedals: return 1 when idle, 0 when fully pressed
         float rawJoyThrottle = joystickThrottle.ReadValue<float>();
         float rawJoyBrake = joystickBrake.ReadValue<float>();
+      
 
         //Invert joystick values if the pedal is actually pressed
         float joyThrottle = rawJoyThrottle < 0.99f ? 0f - rawJoyThrottle : 1f;
@@ -103,39 +113,11 @@ public class Wheeler : MonoBehaviour
         float turn = steeringInput * turnSpeed * Time.deltaTime;
         transform.Rotate(0f, turn, 0f);
 
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            if (isPaused)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-            }
-        }
-
-
+       
 
     }
 
-    public void ResumeGame()
-    {
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
-        isPaused = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
-    public void PauseGame()
-    {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-        isPaused = true;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
-    }
+    
 
   
 
