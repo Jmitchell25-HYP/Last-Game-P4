@@ -9,6 +9,11 @@ public class Wheeler : MonoBehaviour
     public float turnSpeed = 100f;
     public float brakeDrag = 5f;
 
+    public GameObject pauseMenu;
+    private bool isPaused = false;
+
+    
+
     private float steeringInput = 0f;
     private Vector3 velocity = Vector3.zero;
 
@@ -58,8 +63,8 @@ public class Wheeler : MonoBehaviour
         float rawJoyBrake = joystickBrake.ReadValue<float>();
 
         //Invert joystick values if the pedal is actually pressed
-        float joyThrottle = rawJoyThrottle < 0.99f ? 1f - rawJoyThrottle : 0f;
-        float joyBrake = rawJoyBrake < 0.99f ? 1f - rawJoyBrake : 0f;
+        float joyThrottle = rawJoyThrottle < 0.99f ? 0f - rawJoyThrottle : 1f;
+        float joyBrake = rawJoyBrake < 0.99f ? 0f - rawJoyBrake : 1f;
 
         // keyboard returns 0 or 1
         float keyThrottle = keyboardThrottle.ReadValue<float>();
@@ -98,9 +103,41 @@ public class Wheeler : MonoBehaviour
         float turn = steeringInput * turnSpeed * Time.deltaTime;
         transform.Rotate(0f, turn, 0f);
 
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+
+
+
     }
 
-    
+    public void ResumeGame()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void PauseGame()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
+    }
+
+  
 
 
 
