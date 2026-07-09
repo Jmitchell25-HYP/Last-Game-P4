@@ -8,10 +8,9 @@ public class Wheeler : MonoBehaviour
     public float reverseSpeed = 5f;
     public float turnSpeed = 175; 
     public float brakeDrag = 5f;
-    public float driftSpeed = 85;
+    
 
-    public GameObject pauseMenu;
-    private bool isPaused = false;
+
 
     
 
@@ -23,9 +22,7 @@ public class Wheeler : MonoBehaviour
     private InputAction joystickBrake;
     private InputAction keyboardBrake;
     private InputAction steeringAction;
-    private InputAction driftingAction;
-    private InputAction driftThrottle;
-
+ 
     private void OnEnable()
     {
 
