@@ -69,8 +69,8 @@ public class Wheeler : MonoBehaviour
       
 
         //Invert joystick values if the pedal is actually pressed
-        float joyThrottle = rawJoyThrottle < 0.99f ? 0f - rawJoyThrottle : 1f;
-        float joyBrake = rawJoyBrake < 0.99f ? 0f - rawJoyBrake : 1f;
+        float joyThrottle = rawJoyThrottle < 0.99f ? 1f - rawJoyThrottle : 0f;
+        float joyBrake = rawJoyBrake < 0.99f ? 1f - rawJoyBrake : 0f;
 
         // keyboard returns 0 or 1
         float keyThrottle = keyboardThrottle.ReadValue<float>();
